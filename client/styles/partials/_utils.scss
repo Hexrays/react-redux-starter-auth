@@ -1,0 +1,215 @@
+
+$headerHeight: 230px;
+$headerHeightMb: 200px;
+
+$lightRed: #fc8787;
+$darkRed: #a30303;
+$lightGreen: #6ff83f;
+$darkGreen: #329c0d;
+$lightBlue: #78bdf3;
+$darkBlue: #0e2eb5;
+$lightYellow: #fcfe67;
+$darkYellow: #ffea00;
+
+$largeFontSize: 3em;
+$mediumFontSize: 2em;
+$smallFontSize: 1em;
+
+$BREAKPOINT-SMALL        : 321px   !default;
+$BREAKPOINT-MOBILE       : 767px   !default;
+$BREAKPOINT-TABLET       : 1023px  !default;
+$BREAKPOINT-DESKTOP      : 1280px  !default;
+$BREAKPOINT-LARGE        : 1440px  !default;
+$BREAKPOINT-EX-LARGE     : 1920px  !default;
+$BREAKPOINT-ART-DIRECTOR : 2560px  !default;
+
+/* *****************************
+ * Mixins
+ *******************************/
+
+@mixin breakpoint($point, $minmax:max, $widthheight:width) {
+  @if $point == sm {
+    @media only screen and (#{$minmax}-#{$widthheight}: $BREAKPOINT-SMALL)        { @content; }
+  } @else if $point == mb {
+    @media only screen and (#{$minmax}-#{$widthheight}: $BREAKPOINT-MOBILE)       { @content; }
+  } @else if $point == tb {
+    @media only screen and (#{$minmax}-#{$widthheight}: $BREAKPOINT-TABLET)       { @content; }
+  } @else if $point == dt {
+    @media only screen and (#{$minmax}-#{$widthheight}: $BREAKPOINT-DESKTOP)      { @content; }
+  } @else if $point == lg {
+    @media only screen and (#{$minmax}-#{$widthheight}: $BREAKPOINT-LARGE)        { @content; }
+  } @else if $point == xl {
+    @media only screen and (#{$minmax}-#{$widthheight}: $BREAKPOINT-EX-LARGE)     { @content; }
+  } @else if $point == hg {
+    @media only screen and (#{$minmax}-#{$widthheight}: $BREAKPOINT-ART-DIRECTOR) { @content; }
+  } @else {
+    @media only screen and (#{$minmax}-#{$widthheight}: $point)                   { @content; }
+  }
+}
+
+@mixin position($left:null, $top:null, $z-index:null, $right:null, $bottom:null) {
+    @if $left    != null {left:   $left;}
+    @if $top     != null {top:    $top;}
+    @if $right   != null {right:  $right;}
+    @if $bottom  != null {bottom: $bottom;}
+    @if $z-index != null {z-index: $z-index;}
+}
+
+@mixin position-absolute($left:null, $top:null, $z-index:null, $right:null, $bottom:null) {
+    position: absolute;
+    @include position($left, $top, $z-index, $right, $bottom);
+}
+
+@mixin position-relative($left:null, $top:null, $z-index:null, $right:null, $bottom:null) {
+    position: relative;
+    @include position($left, $top, $z-index, $right, $bottom);
+}
+
+@mixin position-fixed($left:null, $top:null, $z-index:null, $right:null, $bottom:null) {
+    position: fixed;
+    @include position($left, $top, $z-index, $right, $bottom);
+}
+
+
+@mixin no-select() {
+    // Prevents highlighting of items
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+%no-select {
+    @include no-select();
+}
+
+@mixin no-highlight() {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+%no-highlight {
+    @include no-highlight();
+}
+
+%no-highlight-or-select {
+    @include no-highlight();
+    @include no-select();
+}
+
+%no-pointer-events {
+    pointer-events: none;
+}
+
+@mixin webkit-accelerated() {
+    -webkit-transform:           translateZ(0);
+    -webkit-backface-visibility: hidden;
+}
+
+%webkit-accelerated {
+    @include webkit-accelerated();
+}
+
+@function pow($number, $exp) {
+  $value: 1;
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  }
+  @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+  @return $value;
+}
+
+@function pi() {
+  @return 3.14159265359;
+}
+
+@function rad($angle) {
+  $unit: unit($angle);
+  $unitless: $angle / ($angle * 0 + 1);
+  // If the angle has 'deg' as unit, convert to radians.
+  @if $unit == deg {
+    $unitless: $unitless / 180 * pi();
+  }
+  @return $unitless;
+}
+
+@function fact($number) {
+  $value: 1;
+  @if $number > 0 {
+    @for $i from 1 through $number {
+      $value: $value * $i;
+    }
+  }
+  @return $value;
+}
+
+@function sin($angle) {
+  $sin: 0;
+  $angle: rad($angle);
+  // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+  }
+  @return $sin;
+}
+
+@function cos($angle) {
+  $cos: 0;
+  $angle: rad($angle);
+  // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+  }
+  @return $cos;
+}
+
+@function tan($angle) {
+  @return sin($angle) / cos($angle);
+}
+
+/// Mixin to place items on a circle
+/// @author Hugo Giraudel
+/// @author Ana Tudor
+/// @param {Integer} $item-count - Number of items on the circle
+/// @param {Length} $circle-size - Large circle size
+/// @param {Length} $item-size - Single item size
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  position: relative;
+  width:  $circle-size;
+  height: $circle-size;
+  padding: 0;
+  border-radius: 50%;
+  list-style: none;
+
+  > * {
+    display: block;
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    width:  $item-size;
+    height: $item-size;
+    margin: -($item-size / 2);
+
+    $angle: (360 / $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform:
+          rotate($rot * 1deg)
+          translate($circle-size / 2)
+          rotate($rot * -1deg);
+      }
+
+      $rot: $rot + $angle;
+    }
+  }
+}
