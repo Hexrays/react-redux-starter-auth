@@ -1,6 +1,6 @@
 # Super Simple React Redux Starter
 
-My Super Simple React Redux starter project.
+My Super Simple React Redux starter project. Based off the guts of Wes Bos' [Learn Redux](https://learnredux.com/) project.
 
 ## Running
 
