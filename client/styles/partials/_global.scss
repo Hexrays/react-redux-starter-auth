@@ -33,19 +33,6 @@ body {
     width: 1px;
 }
 
-.visual-effect {
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
-    transition: opacity 0.5s, visibility 0s 0.5s;
-}
-
-.visible {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 2s linear;
-}
-
 img {
     width: 100%;
 }
