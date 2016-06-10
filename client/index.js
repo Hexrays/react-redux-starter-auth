@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
+import routes from './config/routes';
 
 import css from './styles/main.scss';
 
-render(<h1>Sup?</h1>, document.getElementById('app'));
+render(routes, document.getElementById('app'));

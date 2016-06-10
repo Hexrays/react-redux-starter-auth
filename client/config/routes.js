@@ -5,17 +5,16 @@ import store, { history } from './store';
 
 import App from '../components/App';
 import LandingContainer from '../containers/LandingContainer';
-import OrderContainer from '../containers/OrderContainer';
-import SingleOrderContainer from '../containers/SingleOrderContainer';
-import ListContainer from '../containers/ListContainer';
+import PageOneContainer from '../containers/PageOneContainer';
+import PageTwoContainer from '../containers/PageTwoContainer';
 
 const routes = (
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={LandingContainer}></IndexRoute>
-                <Route path="/order" component={OrderContainer}></Route>
-                <Route path="/list" component={ListContainer}></Route>
+                <Route path="/page2" component={PageOneContainer}></Route>
+                <Route path="/page3" component={PageTwoContainer}></Route>
             </Route>
         </Router>
     </Provider>

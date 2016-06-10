@@ -7,7 +7,7 @@ const Main = React.createClass({
         return (
             <div >
                 <Header title="change me!" />
-                {React.cloneElement(this.props.children, this.props)}
+                {React.cloneElement(this.props.children, { ...this.props, children: this.props.children.props.children })}
             </div>
         );
     }
