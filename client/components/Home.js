@@ -1,9 +1,8 @@
 import React from 'react';
 
-
-const Landing = () => (
+const Landing = (props) => (
     <div className="landing-container container">
-        <p>This is the landing page</p>
+        <p>This is the home page</p>
     </div>
 );
 

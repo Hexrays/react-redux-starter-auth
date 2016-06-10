@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import store, { history } from './store';
 
 import App from '../components/App';
-import LandingContainer from '../containers/LandingContainer';
+import Home from '../components/Home';
 import PageOneContainer from '../containers/PageOneContainer';
 import PageTwoContainer from '../containers/PageTwoContainer';
 
@@ -12,9 +12,9 @@ const routes = (
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
-                <IndexRoute component={LandingContainer}></IndexRoute>
-                <Route path="/page2" component={PageOneContainer}></Route>
-                <Route path="/page3" component={PageTwoContainer}></Route>
+                <IndexRoute component={Home}></IndexRoute>
+                <Route path="/page1" component={PageOneContainer}></Route>
+                <Route path="/page2" component={PageTwoContainer}></Route>
             </Route>
         </Router>
     </Provider>

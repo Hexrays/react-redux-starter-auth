@@ -12,7 +12,6 @@ function addState(state = [], action) {
     default:
       return state;
   }
-  return state;
 }
 
 function mainState(state = [], action) {
