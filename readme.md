@@ -16,3 +16,4 @@ Run `npm build` to create a distro folder and a bundle.js file.
 
 ### Todos
 * Add todos
+* Change redux to a basic todo or counter as an example
