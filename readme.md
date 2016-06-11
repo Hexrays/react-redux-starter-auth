@@ -16,4 +16,5 @@ Run `npm build` to create a distro folder and a bundle.js file.
 
 ### Todos
 * Add todos
-* Change redux to a basic todo or counter as an example
+* Add a basic todo as an example of redux architecture
+* Hook the todos to firebase to persist the todos.
