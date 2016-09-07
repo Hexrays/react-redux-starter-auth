@@ -5,7 +5,6 @@ import store, { history } from './store';
 
 import App from '../components/App';
 import Home from '../components/Home';
-import Tasks from '../components/Tasks';
 import PageOneContainer from '../containers/PageOneContainer';
 import PageTwoContainer from '../containers/PageTwoContainer';
 
