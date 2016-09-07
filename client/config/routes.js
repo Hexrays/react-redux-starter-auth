@@ -16,7 +16,6 @@ const routes = (
                 <IndexRoute component={Home}></IndexRoute>
                 <Route path="/page1" component={PageOneContainer}></Route>
                 <Route path="/page2" component={PageTwoContainer}></Route>
-                <Route path="/tasks" component={Tasks}></Route>
             </Route>
         </Router>
     </Provider>
