@@ -1,4 +1,4 @@
-# Super Simple React Redux Starter
+# Super Simple React Redux Starter with Authentication
 
 My Super Simple React Redux starter project. Based off the guts of Wes Bos' [Learn Redux](https://learnredux.com/) project.
 
@@ -15,4 +15,5 @@ Spoiler alert. Nothing happens yet.
 Run `npm build` to create a distro folder and a bundle.js file.
 
 ### Todos
-* Add authentication
+* Clean up
+* add basic styling (make it pretty)
