@@ -38,7 +38,7 @@ const SignupForm = props => {
         <Field
           name="password"
           component={renderInput}
-          type="text"
+          type="password"
           />
       </fieldset>
       <fieldset className="form-group">
@@ -46,7 +46,7 @@ const SignupForm = props => {
         <Field
           name="passwordConfirm"
           component={renderInput}
-          type="text"
+          type="password"
           />
       </fieldset>
       {renderAlert(errorMessage)}

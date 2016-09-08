@@ -38,7 +38,7 @@ const SignInForm = props => {
         <Field
           name="password"
           component={renderInput}
-          type="text"
+          type="password"
           />
       </fieldset>
       {renderAlert(errorMessage)}
