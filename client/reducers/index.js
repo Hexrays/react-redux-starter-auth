@@ -1,8 +1,13 @@
 import {combineReducers} from 'redux';
 import { routerReducer } from 'react-router-redux';
+import { reducer as form } from 'redux-form';
 
-import mainState from './mainState';
+import authReducer from './authReducer'
 
-const rootReducer = combineReducers({mainState, routing: routerReducer});
+const rootReducer = combineReducers({
+  form,
+  routing: routerReducer,
+  auth: authReducer
+});
 
 export default rootReducer;

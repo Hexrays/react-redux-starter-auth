@@ -1,18 +1,16 @@
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actionCreators from '../actions/actionCreators';
-import Main from './Main';
+import React from 'react';
 
-function mapStateToProps(state) {
-    return {
-        mainState: state.mainState
-    }
-}
+import Header from './Header';
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch);
-}
-
-const App = connect(mapStateToProps, mapDispatchToProps)(Main);
+const App = React.createClass({
+  render() {
+    return (
+      <div >
+        <Header title="React Redux Auth" />
+        {React.cloneElement(this.props.children, { ...this.props, children: this.props.children.props.children })}
+      </div>
+    );
+  }
+});
 
 export default App;

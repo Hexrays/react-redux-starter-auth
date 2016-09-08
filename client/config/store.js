@@ -1,16 +1,26 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import {browserHistory} from 'react-router';
+import reduxThunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 // import the root reducer
 import rootReducer from '../reducers/index';
 
+const configureStore = () => {
+  const middlewares = [reduxThunk];
 
-const enhancers = compose(
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-);
+  if (process.env.NODE_ENV !== 'production') {
+    middlewares.push(createLogger());
+  }
 
-const store = createStore(rootReducer, enhancers);
+  return createStore(
+    rootReducer,
+    applyMiddleware(...middlewares)
+  );
+};
+
+const store = configureStore();
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
