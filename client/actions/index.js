@@ -5,7 +5,8 @@ import {
   AUTH_USER,
   DEAUTH_USER,
   AUTH_ERROR,
-  FETCH_MESSAGE
+  FETCH_MESSAGE,
+  FETCH_CURRENT_USER
 } from '../actions/types';
 
 const API_URL = 'http://localhost:3090';
@@ -20,6 +21,11 @@ export function signinUser({email, password}) {
 
         // - Update state to indicate user is authenticated
         dispatch({type: AUTH_USER});
+
+        dispatch({
+          type    : FETCH_CURRENT_USER,
+          payload : response.data.user
+        });
 
         // - Save the JWT token
         localStorage.setItem('token', response.data.token);
@@ -82,4 +88,21 @@ export function fetchMessage() {
         });
       });
   }
-}
+};
+
+export function fetchCurrentUser() {
+  console.log('futch');
+  return function(dispatch) {
+    axios.get(`${API_URL}/currentUser`, {
+      headers: { authorization: localStorage.getItem('token')}
+    })
+      .then(response => {
+        console.log(response);
+        dispatch({
+          type: FETCH_CURRENT_USER,
+          payload: response.data.user
+        });
+      })
+      .catch(error => console.log(error));
+  }
+};

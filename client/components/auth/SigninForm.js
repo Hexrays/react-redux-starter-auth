@@ -1,25 +1,8 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 
-function renderAlert(errorMessage) {
-  if(errorMessage) {
-    return (
-      <div className="alert alert-danger">
-        <strong>Oops!</strong> {errorMessage}
-      </div>
-    );
-  }
-}
+import * as formUtils from '../formUtils';
 
-// This should be extracted as it's used in Signup form as well
-const renderInput = field => (   // Define stateless component to render input and errors
-  <div>
-    <input {...field.input} type={field.type} className="form-control"/>
-    {field.meta.touched &&
-     field.meta.error &&
-     <span className="error">{field.meta.error}</span>}
-  </div>
-)
 
 const SignInForm = props => {
   const {handleSubmit, handleFormSubmit, errorMessage} = props;
@@ -29,7 +12,7 @@ const SignInForm = props => {
         <label>Email:</label>
         <Field
           name="email"
-          component={renderInput}
+          component={formUtils.renderInput}
           type="text"
           />
       </fieldset>
@@ -37,11 +20,11 @@ const SignInForm = props => {
         <label>Password:</label>
         <Field
           name="password"
-          component={renderInput}
+          component={formUtils.renderInput}
           type="password"
           />
       </fieldset>
-      {renderAlert(errorMessage)}
+      {formUtils.renderAlert(errorMessage)}
       <button action="submit" className="btn btn-primary">Sign in</button>
     </form>
   );
