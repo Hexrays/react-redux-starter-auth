@@ -8,22 +8,18 @@ const SignInForm = props => {
   const {handleSubmit, handleFormSubmit, errorMessage} = props;
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)}>
-      <fieldset className="form-group">
-        <label>Email:</label>
-        <Field
-          name="email"
-          component={formUtils.renderInput}
-          type="text"
-          />
-      </fieldset>
-      <fieldset className="form-group">
-        <label>Password:</label>
-        <Field
-          name="password"
-          component={formUtils.renderInput}
-          type="password"
-          />
-      </fieldset>
+      <Field
+        placeholder="Email"
+        name="email"
+        component={formUtils.renderInput}
+        type="text"
+        />
+      <Field
+        placeholder="Password"
+        name="password"
+        component={formUtils.renderInput}
+        type="password"
+        />
       {formUtils.renderAlert(errorMessage)}
       <button action="submit" className="btn btn-primary">Sign in</button>
     </form>
