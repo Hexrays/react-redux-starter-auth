@@ -7,7 +7,9 @@
     "build": "npm run clean && npm run build:webpack",
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
-    "start": "node devServer.js"
+    "dev": "node server.js",
+    "start": "node server.js",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,8 @@
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^6.2.0",
     "express": "^4.13.4",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.4.2",
     "react": "^15.0.2",
     "react-addons-css-transition-group": "^15.0.2",
@@ -56,7 +60,6 @@
   "devDependencies": {
     "expect": "^1.18.0",
     "expect-jsx": "^2.5.1",
-    "file-loader": "^0.9.0",
     "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.0.2"
   }
